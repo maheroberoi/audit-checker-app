@@ -4,7 +4,7 @@ import pandas as pd
 
 st.set_page_config(page_title="Audit Checker", layout="wide")
 
-st.title("📊 Audit Data Validator")
+st.title("Audit Data Validator")
 st.write("Upload your CSV or Excel file to check for common data issues.")
 
 uploaded_file = st.file_uploader("Upload File", type=["csv", "xlsx"])
@@ -15,21 +15,21 @@ if uploaded_file:
         st.success("File uploaded successfully!")
 
         # Summary
-        st.subheader("🔍 Basic Checks")
+        st.subheader("Basic Checks")
         st.write(f"Shape: {df.shape}")
         st.write("Column Names:", list(df.columns))
 
         # Missing values
-        st.subheader("🟨 Missing Values")
+        st.subheader("Missing Values")
         st.write(df.isnull().sum())
 
         # Duplicate rows
-        st.subheader("📎 Duplicate Rows")
+        st.subheader("Duplicate Rows")
         dupes = df[df.duplicated()]
         st.write(dupes)
 
         # Numeric outliers (basic z-score)
-        st.subheader("🚨 Outlier Detection")
+        st.subheader("Outlier Detection")
         num_cols = df.select_dtypes(include="number").columns
         for col in num_cols:
             z = (df[col] - df[col].mean()) / df[col].std()
